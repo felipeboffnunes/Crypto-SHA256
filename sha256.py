@@ -30,7 +30,7 @@ def calculate_hashes(blocks) -> list:
     hashes.reverse()
     return hashes
 
-def check_block(hashes, block, block_index):
+def check_block(hashes, block, block_index) -> bytes:
     m = hashlib.sha256()
     next_block_hash = bytes.fromhex(hashes[block_index+1])
     block_plus_hash = block+next_block_hash
@@ -38,6 +38,7 @@ def check_block(hashes, block, block_index):
     hash_acquired = m.digest().hex()
     return hash_acquired
 
+# SETUP
 filename = input('Type path of file:')
 blocks = get_chunks(filename)
 hashes = calculate_hashes(blocks)
